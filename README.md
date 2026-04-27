@@ -50,14 +50,47 @@ To demonstrate the overwhelming throughput advantage of the GPU, we enabled Open
 
 ---
 
-## 4. Micro-architectural Profiling (Nsight Compute)
+## Visualizations and Profiling Metrics
 
+### 1. Performance Scaling: GPU vs Multi-Core CPU
+The plot below highlights the exponential growth of execution time on the CPU (hitting the memory wall) compared to the near-flat scaling of the GPU up to 256³ grids.
+
+![Performance Scaling](scaling_plot.png)
+
+### 2. GPU Kernel Execution Breakdown
+Based on our Nsight Compute profiling, Sparse Matrix-Vector Multiplication (`SPARSEMV`) consumes >82% of the execution time, proving it is the core bottleneck of the Conjugate Gradient solver.
+
+![Kernel Pie Chart](kernel_pie.png)
+
+### 3. Effective Memory Bandwidth Calculation
+For the largest grid ($256 \times 256 \times 256$):
+- **Rows (`nrow`)**: 16,777,216
+- **Non-zeros (`nnz`)**: 452,984,832
+- **Data transferred per iteration**:
+  - `row_ptr` (4 bytes): ~67 MB
+  - `col_idx` (4 bytes): ~1.81 GB
+  - `values` (8 bytes): ~3.62 GB
+  - `x` read / `y` write: ~268 MB
+  - **Total per iteration**: ~5.77 GB
+- **Total across 149 iterations**: 859.73 GB
+- **SpMV Execution Time**: 5.956 seconds
+
+**Effective Memory Bandwidth = 144.3 GB/s**
+*(This represents extremely high utilization of the NVIDIA L4's 300 GB/s theoretical peak bandwidth, especially for sparse, irregular memory access patterns).*
+
+---
+
+## 4. Micro-architectural Profiling (Nsight Compute)
 We utilized NVIDIA Nsight Compute to perform an instruction-level profile of the `spmv_kernel`.
 
 1. **Maximum Memory Throughput (DRAM Throughput)**: Reached **~74.16%** of the theoretical peak. In sparse memory access patterns, this effectively hits the physical ceiling of the hardware memory bandwidth. Simultaneously, Compute (SM) Utilization was only 10.6%, proving the algorithm is a pure **Memory-bound** operation.
 2. **High Occupancy**: Achieved Occupancy reached **92.8%** (Theoretical limit is 100%). This confirms that our Block Size of 256 and register allocation of 40/thread perfectly saturate the Streaming Multiprocessors, allowing the warp scheduler to effectively hide memory latency.
 
 ---
+
+## Technical Learnings
+- **The Memory Wall**: CPU threading collapsed at $256^3$ due to physical memory bus contention. The L4 GPU's HBM completely alleviated this.
+- **CSR Format Transformation**: Translating raw pointer-chasing structures to contiguous 1D memory blocks is the prerequisite for any high-performance CUDA application.
 
 ## 5. Directory Structure & Execution
 
