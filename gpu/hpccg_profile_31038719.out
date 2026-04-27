@@ -1,0 +1,71 @@
+Initial Residual = 0
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 128
+  ny: 128
+  nz: 128
+Number of iterations: 0
+Final residual: 0
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.000899
+  DDOT    : 1e-06
+  WAXPBY  : 3e-06
+  SPARSEMV: 0
+FLOPS Summary: 
+  Total   : 0
+  DDOT    : 0
+  WAXPBY  : 0
+  SPARSEMV: 0
+MFLOPS Summary: 
+  Total   : 0
+  DDOT    : 0
+  WAXPBY  : 0
+  SPARSEMV: -nan
+Failed to create '/home/bohanzhang1/hpccg-gpu/gpu/hpccg_profile.nsys-rep': File exists.
+Use `--force-overwrite true` to overwrite existing files.
+Collecting data...
+Generating '/scratch/local/31038719/nsys-report-f754.qdstrm'
+[1/1] [0%                          ] nsys-report-9fee.nsys-rep[1/1] [0%                          ] nsys-report-9fee.nsys-rep[1/1] [===========50%              ] nsys-report-9fee.nsys-rep[1/1] [=======================96%  ] nsys-report-9fee.nsys-rep[1/1] [========================97% ] nsys-report-9fee.nsys-rep[1/1] [========================99% ] nsys-report-9fee.nsys-rep[1/1] [========================100%] nsys-report-9fee.nsys-rep[1/1] [========================100%] nsys-report-9fee.nsys-rep
+Generated:
+	/scratch/local/31038719/nsys-report-9fee.nsys-rep
+
+==ERROR== An error was reported by the driver:
+==ERROR== For more information, see /scratch/local/31038719/nsight-compute-d0ee-1309.log
+==ERROR== Cuda driver is not compatible with Nsight Compute.
+==ERROR== For more information, see /scratch/local/31038719/nsight-compute-d0ee-1309.log
+==PROF== Connected to process 2287719 (/home/bohanzhang1/hpccg-gpu/gpu/test_HPCCG_cuda)
+Initial Residual = 0
+==PROF== Disconnected from process 2287719
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 128
+  ny: 128
+  nz: 128
+Number of iterations: 0
+Final residual: 0
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.001472
+  DDOT    : 0
+  WAXPBY  : 2e-06
+  SPARSEMV: 0
+FLOPS Summary: 
+  Total   : 0
+  DDOT    : 0
+  WAXPBY  : 0
+  SPARSEMV: 0
+MFLOPS Summary: 
+  Total   : 0
+  DDOT    : -nan
+  WAXPBY  : 0
+  SPARSEMV: -nan
+==WARNING== No kernels were profiled.

@@ -1,0 +1,32 @@
+CXX = g++
+NVCC = nvcc
+LINKER = nvcc
+
+CPP_OPT_FLAGS = -O3
+NVCC_FLAGS = -O3 -arch=sm_89 -allow-unsupported-compiler
+
+USE_MPI =
+
+CPP_SRCS = main.cpp generate_matrix.cpp read_HPC_row.cpp \
+           compute_residual.cpp mytimer.cpp dump_matlab_matrix.cpp \
+           make_local_matrix.cpp exchange_externals.cpp \
+           YAML_Element.cpp YAML_Doc.cpp
+
+CU_SRCS = kernels.cu cuda_utils.cu HPCCG_cuda.cu
+
+CPP_OBJS = $(CPP_SRCS:.cpp=.o)
+CU_OBJS = $(CU_SRCS:.cu=.o)
+
+TARGET = test_HPCCG_cuda
+
+$(TARGET): $(CPP_OBJS) $(CU_OBJS)
+	$(LINKER) $(CPP_OBJS) $(CU_OBJS) -o $(TARGET) -lm
+
+%.o: %.cpp
+	$(CXX) $(CPP_OPT_FLAGS) $(USE_MPI) -c $< -o $@
+
+%.o: %.cu
+	$(NVCC) $(NVCC_FLAGS) -c $< -o $@
+
+clean:
+	rm -f *.o $(TARGET)

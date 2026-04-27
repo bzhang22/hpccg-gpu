@@ -1,0 +1,193 @@
+Mon Apr 27 04:50:00 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.148.08             Driver Version: 570.148.08     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L4                      On  |   00000000:41:00.0 Off |                    0 |
+| N/A   22C    P8             15W /   70W |       0MiB /  23034MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Compiling on compute node...
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2024 NVIDIA Corporation
+Built on Thu_Mar_28_02:18:24_PDT_2024
+Cuda compilation tools, release 12.4, V12.4.131
+Build cuda_12.4.r12.4/compiler.34097967_0
+rm -f *.o test_HPCCG_cuda
+g++ -O3  -c main.cpp -o main.o
+g++ -O3  -c generate_matrix.cpp -o generate_matrix.o
+g++ -O3  -c read_HPC_row.cpp -o read_HPC_row.o
+g++ -O3  -c compute_residual.cpp -o compute_residual.o
+g++ -O3  -c mytimer.cpp -o mytimer.o
+g++ -O3  -c dump_matlab_matrix.cpp -o dump_matlab_matrix.o
+g++ -O3  -c make_local_matrix.cpp -o make_local_matrix.o
+g++ -O3  -c exchange_externals.cpp -o exchange_externals.o
+g++ -O3  -c YAML_Element.cpp -o YAML_Element.o
+g++ -O3  -c YAML_Doc.cpp -o YAML_Doc.o
+nvcc -O3 -arch=sm_89 -allow-unsupported-compiler -c kernels.cu -o kernels.o
+nvcc -O3 -arch=sm_89 -allow-unsupported-compiler -c cuda_utils.cu -o cuda_utils.o
+nvcc -O3 -arch=sm_89 -allow-unsupported-compiler -c HPCCG_cuda.cu -o HPCCG_cuda.o
+nvcc main.o generate_matrix.o read_HPC_row.o compute_residual.o mytimer.o dump_matlab_matrix.o make_local_matrix.o exchange_externals.o YAML_Element.o YAML_Doc.o kernels.o cuda_utils.o HPCCG_cuda.o -o test_HPCCG_cuda -lm
+Initial Residual = 1654.81
+Iteration = 15   Residual = 19.7523
+Iteration = 30   Residual = 0.107645
+Iteration = 45   Residual = 0.000229062
+Iteration = 60   Residual = 4.03876e-07
+Iteration = 75   Residual = 4.4229e-10
+Iteration = 90   Residual = 5.59501e-13
+Iteration = 105   Residual = 3.9836e-16
+Iteration = 120   Residual = 1.51231e-19
+Iteration = 135   Residual = 2.49532e-22
+Iteration = 149   Residual = 1.99956e-25
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 64
+  ny: 64
+  nz: 64
+Number of iterations: 149
+Final residual: 1.99956e-25
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.111688
+  DDOT    : 0.006437
+  WAXPBY  : 0.004719
+  SPARSEMV: 0.089109
+FLOPS Summary: 
+  Total   : 2.49981e+09
+  DDOT    : 1.56238e+08
+  WAXPBY  : 2.34357e+08
+  SPARSEMV: 2.10921e+09
+MFLOPS Summary: 
+  Total   : 22382
+  DDOT    : 24271.8
+  WAXPBY  : 49662.4
+  SPARSEMV: 23670
+Initial Residual = 3451.99
+Iteration = 15   Residual = 46.9279
+Iteration = 30   Residual = 0.311717
+Iteration = 45   Residual = 0.00203715
+Iteration = 60   Residual = 1.22209e-05
+Iteration = 75   Residual = 4.48121e-08
+Iteration = 90   Residual = 2.43156e-10
+Iteration = 105   Residual = 1.22227e-12
+Iteration = 120   Residual = 4.4445e-15
+Iteration = 135   Residual = 1.90203e-17
+Iteration = 149   Residual = 1.03555e-19
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 128
+  ny: 128
+  nz: 128
+Number of iterations: 149
+Final residual: 1.03555e-19
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.862486
+  DDOT    : 0.038903
+  WAXPBY  : 0.041413
+  SPARSEMV: 0.742585
+FLOPS Summary: 
+  Total   : 1.99984e+10
+  DDOT    : 1.2499e+09
+  WAXPBY  : 1.87485e+09
+  SPARSEMV: 1.68737e+10
+MFLOPS Summary: 
+  Total   : 23187
+  DDOT    : 32128.7
+  WAXPBY  : 45272.1
+  SPARSEMV: 22722.9
+Initial Residual = 5394.99
+Iteration = 15   Residual = 74.148
+Iteration = 30   Residual = 0.501755
+Iteration = 45   Residual = 0.00340281
+Iteration = 60   Residual = 2.29124e-05
+Iteration = 75   Residual = 1.51761e-07
+Iteration = 90   Residual = 9.4704e-10
+Iteration = 105   Residual = 3.77693e-12
+Iteration = 120   Residual = 2.28122e-14
+Iteration = 135   Residual = 1.4415e-16
+Iteration = 149   Residual = 1.20481e-18
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 192
+  ny: 192
+  nz: 192
+Number of iterations: 149
+Final residual: 1.20481e-18
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 3.01204
+  DDOT    : 0.116915
+  WAXPBY  : 0.271133
+  SPARSEMV: 2.51453
+FLOPS Summary: 
+  Total   : 6.74947e+10
+  DDOT    : 4.21842e+09
+  WAXPBY  : 6.32763e+09
+  SPARSEMV: 5.69487e+10
+MFLOPS Summary: 
+  Total   : 22408.4
+  DDOT    : 36081.1
+  WAXPBY  : 23337.7
+  SPARSEMV: 22647.8
+Initial Residual = 7475.3
+Iteration = 15   Residual = 101.378
+Iteration = 30   Residual = 0.689738
+Iteration = 45   Residual = 0.00471707
+Iteration = 60   Residual = 3.21953e-05
+Iteration = 75   Residual = 2.19031e-07
+Iteration = 90   Residual = 1.48129e-09
+Iteration = 105   Residual = 9.88566e-12
+Iteration = 120   Residual = 6.31416e-14
+Iteration = 135   Residual = 2.73828e-16
+Iteration = 149   Residual = 2.242e-18
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 256
+  ny: 256
+  nz: 256
+Number of iterations: 149
+Final residual: 2.242e-18
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 7.20165
+  DDOT    : 0.262824
+  WAXPBY  : 0.71448
+  SPARSEMV: 5.95684
+FLOPS Summary: 
+  Total   : 1.59988e+11
+  DDOT    : 9.99922e+09
+  WAXPBY  : 1.49988e+10
+  SPARSEMV: 1.34989e+11
+MFLOPS Summary: 
+  Total   : 22215.4
+  DDOT    : 38045.3
+  WAXPBY  : 20992.7
+  SPARSEMV: 22661.2

@@ -1,0 +1,92 @@
+g++ -O3 -fopenmp -DUSING_OMP     -c -o main.o main.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o generate_matrix.o generate_matrix.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o read_HPC_row.o read_HPC_row.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o compute_residual.o compute_residual.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o mytimer.o mytimer.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o dump_matlab_matrix.o dump_matlab_matrix.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o HPC_sparsemv.o HPC_sparsemv.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o HPCCG.o HPCCG.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o waxpby.o waxpby.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o ddot.o ddot.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o make_local_matrix.o make_local_matrix.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o exchange_externals.o exchange_externals.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o YAML_Element.o YAML_Element.cpp
+g++ -O3 -fopenmp -DUSING_OMP     -c -o YAML_Doc.o YAML_Doc.cpp
+g++ -O3 -fopenmp main.o generate_matrix.o read_HPC_row.o compute_residual.o mytimer.o dump_matlab_matrix.o HPC_sparsemv.o HPCCG.o waxpby.o ddot.o make_local_matrix.o exchange_externals.o YAML_Element.o YAML_Doc.o -lm -o test_HPCCG
+Running with 16 threads
+Initial Residual = 5394.99
+Iteration = 15   Residual = 74.148
+Iteration = 30   Residual = 0.501755
+Iteration = 45   Residual = 0.00340281
+Iteration = 60   Residual = 2.29124e-05
+Iteration = 75   Residual = 1.51761e-07
+Iteration = 90   Residual = 9.4704e-10
+Iteration = 105   Residual = 3.77693e-12
+Iteration = 120   Residual = 2.28122e-14
+Iteration = 135   Residual = 1.4415e-16
+Iteration = 149   Residual = 1.20481e-18
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  Number of OpenMP threads: 16
+Dimensions: 
+  nx: 192
+  ny: 192
+  nz: 192
+Number of iterations: 149
+Final residual: 1.20481e-18
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 158.201
+  DDOT    : 11.3578
+  WAXPBY  : 20.5295
+  SPARSEMV: 126.128
+FLOPS Summary: 
+  Total   : 6.74947e+10
+  DDOT    : 4.21842e+09
+  WAXPBY  : 6.32763e+09
+  SPARSEMV: 5.69487e+10
+MFLOPS Summary: 
+  Total   : 426.639
+  DDOT    : 371.411
+  WAXPBY  : 308.221
+  SPARSEMV: 451.516
+Initial Residual = 7475.3
+Iteration = 15   Residual = 101.378
+Iteration = 30   Residual = 0.689738
+Iteration = 45   Residual = 0.00471707
+Iteration = 60   Residual = 3.21953e-05
+Iteration = 75   Residual = 2.19031e-07
+Iteration = 90   Residual = 1.48129e-09
+Iteration = 105   Residual = 9.88566e-12
+Iteration = 120   Residual = 6.31416e-14
+Iteration = 135   Residual = 2.73828e-16
+Iteration = 149   Residual = 2.242e-18
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  Number of OpenMP threads: 16
+Dimensions: 
+  nx: 256
+  ny: 256
+  nz: 256
+Number of iterations: 149
+Final residual: 2.242e-18
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 384.243
+  DDOT    : 27.3882
+  WAXPBY  : 43.0871
+  SPARSEMV: 313.58
+FLOPS Summary: 
+  Total   : 1.59988e+11
+  DDOT    : 9.99922e+09
+  WAXPBY  : 1.49988e+10
+  SPARSEMV: 1.34989e+11
+MFLOPS Summary: 
+  Total   : 416.371
+  DDOT    : 365.092
+  WAXPBY  : 348.105
+  SPARSEMV: 430.479
