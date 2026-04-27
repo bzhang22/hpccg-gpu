@@ -64,6 +64,7 @@
 using std::cout;
 using std::cerr;
 using std::endl;
+#include <fstream>
 #include <cstdio>
 #include <cstdlib>
 #include <cctype>
@@ -178,6 +179,14 @@ int main(int argc, char *argv[])
   ierr = HPCCG( A, b, x, max_iter, tolerance, niters, normr, times);
 
 	if (ierr) cerr << "Error in call to CG: " << ierr << ".\n" << endl;
+
+  if (rank == 0) {
+    std::ofstream out("x_cpu.txt");
+    for (int i = 0; i < A->local_nrow; ++i) {
+      out << x[i] << "\n";
+    }
+    out.close();
+  }
 
 #ifdef USING_MPI
       double t4 = times[4];
