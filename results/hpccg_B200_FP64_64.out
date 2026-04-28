@@ -1,0 +1,39 @@
+Running B200 FP64 64^3...
+Initial Residual = 1654.81
+Iteration = 15   Residual = 19.7523
+Iteration = 30   Residual = 0.107645
+Iteration = 45   Residual = 0.000229062
+Iteration = 60   Residual = 4.03876e-07
+Iteration = 75   Residual = 4.4229e-10
+Iteration = 90   Residual = 5.59501e-13
+Iteration = 105   Residual = 3.9836e-16
+Iteration = 120   Residual = 1.51308e-19
+Iteration = 135   Residual = 4.71919e-22
+Iteration = 149   Residual = 1.94156e-25
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 64
+  ny: 64
+  nz: 64
+Number of iterations: 149
+Final residual: 1.94156e-25
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.034205
+  DDOT    : 0.006053
+  WAXPBY  : 0.004126
+  SPARSEMV: 0.004576
+FLOPS Summary: 
+  Total   : 2.49981e+09
+  DDOT    : 1.56238e+08
+  WAXPBY  : 2.34357e+08
+  SPARSEMV: 2.10921e+09
+MFLOPS Summary: 
+  Total   : 73083
+  DDOT    : 25811.6
+  WAXPBY  : 56800
+  SPARSEMV: 460929
