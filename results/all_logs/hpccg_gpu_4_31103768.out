@@ -1,0 +1,8 @@
+Lmod has detected the following error: This module can only be used on RHEL8
+nodes. 
+While processing the following module(s):
+    Module fullname  Module Filename
+    ---------------  ---------------
+    openmpi/4.1.6    /apps/lmod/modulefiles/cuda/12.4.1/compiler/gcc/12.2.0/openmpi/4.1.6.lua
+
+/var/spool/slurmd/job31103768/slurm_script: line 15: mpirun: command not found

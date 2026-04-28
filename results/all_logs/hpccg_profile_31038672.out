@@ -1,0 +1,71 @@
+Initial Residual = 0
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 128
+  ny: 128
+  nz: 128
+Number of iterations: 0
+Final residual: 0
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.001048
+  DDOT    : 1e-06
+  WAXPBY  : 2e-06
+  SPARSEMV: 0
+FLOPS Summary: 
+  Total   : 0
+  DDOT    : 0
+  WAXPBY  : 0
+  SPARSEMV: 0
+MFLOPS Summary: 
+  Total   : 0
+  DDOT    : 0
+  WAXPBY  : 0
+  SPARSEMV: -nan
+Failed to create '/home/bohanzhang1/hpccg-gpu/gpu/hpccg_profile.nsys-rep': File exists.
+Use `--force-overwrite true` to overwrite existing files.
+Collecting data...
+Generating '/scratch/local/31038672/nsys-report-6af3.qdstrm'
+[1/1] [0%                          ] nsys-report-c0ec.nsys-rep[1/1] [0%                          ] nsys-report-c0ec.nsys-rep[1/1] [===========50%              ] nsys-report-c0ec.nsys-rep[1/1] [========================97% ] nsys-report-c0ec.nsys-rep[1/1] [========================99% ] nsys-report-c0ec.nsys-rep[1/1] [========================100%] nsys-report-c0ec.nsys-rep[1/1] [========================100%] nsys-report-c0ec.nsys-rep
+Generated:
+	/scratch/local/31038672/nsys-report-c0ec.nsys-rep
+
+==ERROR== An error was reported by the driver:
+==ERROR== For more information, see /scratch/local/31038672/nsight-compute-c977-57b3.log
+==ERROR== Cuda driver is not compatible with Nsight Compute.
+==ERROR== For more information, see /scratch/local/31038672/nsight-compute-c977-57b3.log
+==PROF== Connected to process 2280351 (/home/bohanzhang1/hpccg-gpu/gpu/test_HPCCG_cuda)
+Initial Residual = 0
+==PROF== Disconnected from process 2280351
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 128
+  ny: 128
+  nz: 128
+Number of iterations: 0
+Final residual: 0
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.002475
+  DDOT    : 0
+  WAXPBY  : 3e-06
+  SPARSEMV: 0
+FLOPS Summary: 
+  Total   : 0
+  DDOT    : 0
+  WAXPBY  : 0
+  SPARSEMV: 0
+MFLOPS Summary: 
+  Total   : 0
+  DDOT    : -nan
+  WAXPBY  : 0
+  SPARSEMV: -nan
+==WARNING== No kernels were profiled.

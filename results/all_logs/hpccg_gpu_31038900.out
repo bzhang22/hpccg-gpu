@@ -1,0 +1,139 @@
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) gcc/14.2.0
+
+The following have been reloaded with a version change:
+  1) cuda/13.2.1 => cuda/12.4.1
+
+Sun Apr 26 12:42:26 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.195.03             Driver Version: 570.195.03     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L4                      On  |   00000000:41:00.0 Off |                    0 |
+| N/A   26C    P8             15W /   70W |       0MiB /  23034MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Compiling on compute node...
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2024 NVIDIA Corporation
+Built on Thu_Mar_28_02:18:24_PDT_2024
+Cuda compilation tools, release 12.4, V12.4.131
+Build cuda_12.4.r12.4/compiler.34097967_0
+rm -f *.o test_HPCCG_cuda
+g++ -O3  -c main.cpp -o main.o
+g++ -O3  -c generate_matrix.cpp -o generate_matrix.o
+g++ -O3  -c read_HPC_row.cpp -o read_HPC_row.o
+g++ -O3  -c compute_residual.cpp -o compute_residual.o
+g++ -O3  -c mytimer.cpp -o mytimer.o
+g++ -O3  -c dump_matlab_matrix.cpp -o dump_matlab_matrix.o
+g++ -O3  -c make_local_matrix.cpp -o make_local_matrix.o
+g++ -O3  -c exchange_externals.cpp -o exchange_externals.o
+g++ -O3  -c YAML_Element.cpp -o YAML_Element.o
+g++ -O3  -c YAML_Doc.cpp -o YAML_Doc.o
+nvcc -O3 -arch=sm_89 -allow-unsupported-compiler -c kernels.cu -o kernels.o
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/x86_64-pc-linux-gnu/bits/c++config.h(827): error: user-defined literal operator not found
+    typedef __decltype(0.0bf16) __bfloat16_t;
+                       ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(529): error: type name is not allowed
+      : public __bool_constant<__is_array(_Tp)>
+                                          ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(529): error: identifier "__is_array" is undefined
+      : public __bool_constant<__is_array(_Tp)>
+                               ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(581): error: type name is not allowed
+      : public __bool_constant<__is_member_object_pointer(_Tp)>
+                                                          ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(581): error: identifier "__is_member_object_pointer" is undefined
+      : public __bool_constant<__is_member_object_pointer(_Tp)>
+                               ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(603): error: type name is not allowed
+      : public __bool_constant<__is_member_function_pointer(_Tp)>
+                                                            ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(603): error: identifier "__is_member_function_pointer" is undefined
+      : public __bool_constant<__is_member_function_pointer(_Tp)>
+                               ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(695): error: type name is not allowed
+      : public __bool_constant<__is_reference(_Tp)>
+                                              ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(695): error: identifier "__is_reference" is undefined
+      : public __bool_constant<__is_reference(_Tp)>
+                               ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(731): error: type name is not allowed
+      : public __bool_constant<__is_object(_Tp)>
+                                           ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(731): error: identifier "__is_object" is undefined
+      : public __bool_constant<__is_object(_Tp)>
+                               ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(760): error: type name is not allowed
+      : public __bool_constant<__is_member_pointer(_Tp)>
+                                                   ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(760): error: identifier "__is_member_pointer" is undefined
+      : public __bool_constant<__is_member_pointer(_Tp)>
+                               ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(3247): error: type name is not allowed
+    inline constexpr bool is_array_v = __is_array(_Tp);
+                                                  ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(3271): error: type name is not allowed
+      __is_member_object_pointer(_Tp);
+                                 ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(3281): error: type name is not allowed
+      __is_member_function_pointer(_Tp);
+                                   ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(3298): error: type name is not allowed
+    inline constexpr bool is_reference_v = __is_reference(_Tp);
+                                                          ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(3315): error: type name is not allowed
+    inline constexpr bool is_object_v = __is_object(_Tp);
+                                                    ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(3328): error: type name is not allowed
+    inline constexpr bool is_member_pointer_v = __is_member_pointer(_Tp);
+                                                                    ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/bits/utility.h(237): error: __type_pack_element is not a template
+      { using type = __type_pack_element<_Np, _Types...>; };
+                     ^
+
+/apps/compilers/gcc/14.2.0/include/c++/14.2.0/type_traits(138): error: class "std::enable_if<<error-constant>, void>" has no member "type"
+      using __enable_if_t = typename enable_if<_Cond, _Tp>::type;
+                                                            ^
+          detected during:
+            instantiation of type "std::__enable_if_t<<error-constant>, void>" at line 176
+            instantiation of "std::__detail::__or_fn" based on template arguments <std::is_reference<std::allocator<char>>, std::is_function<std::allocator<char>>, std::is_void<std::allocator<char>>, std::__is_array_unknown_bounds<std::allocator<char>>> at line 194
+            instantiation of class "std::__or_<_Bn...> [with _Bn=<std::is_reference<std::allocator<char>>, std::is_function<std::allocator<char>>, std::is_void<std::allocator<char>>, std::__is_array_unknown_bounds<std::allocator<char>>>]" at line 1195
+            instantiation of class "std::is_nothrow_default_constructible<_Tp> [with _Tp=std::allocator<char>]" at line 528 of /apps/compilers/gcc/14.2.0/include/c++/14.2.0/bits/basic_string.h
+            instantiation of "std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string() [with _CharT=char, _Traits=std::char_traits<char>, _Alloc=std::allocator<char>]" at line 4248 of /apps/compilers/gcc/14.2.0/include/c++/14.2.0/bits/basic_string.h
+
+21 errors detected in the compilation of "kernels.cu".
+make: *** [Makefile.cuda:29: kernels.o] Error 2
+/var/spool/slurmd/job31038900/slurm_script: line 23: ./test_HPCCG_cuda: No such file or directory
+/var/spool/slurmd/job31038900/slurm_script: line 24: ./test_HPCCG_cuda: No such file or directory
