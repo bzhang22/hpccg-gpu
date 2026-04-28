@@ -1,0 +1,114 @@
+Compiling for Blackwell (B200)...
+rm -f *.o test_HPCCG_cuda
+g++ -O3  -c main.cpp -o main.o
+g++ -O3  -c generate_matrix.cpp -o generate_matrix.o
+g++ -O3  -c read_HPC_row.cpp -o read_HPC_row.o
+g++ -O3  -c compute_residual.cpp -o compute_residual.o
+g++ -O3  -c mytimer.cpp -o mytimer.o
+g++ -O3  -c dump_matlab_matrix.cpp -o dump_matlab_matrix.o
+g++ -O3  -c make_local_matrix.cpp -o make_local_matrix.o
+g++ -O3  -c exchange_externals.cpp -o exchange_externals.o
+g++ -O3  -c YAML_Element.cpp -o YAML_Element.o
+g++ -O3  -c YAML_Doc.cpp -o YAML_Doc.o
+nvcc -O3 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_90,code=compute_90 -allow-unsupported-compiler -c kernels.cu -o kernels.o
+nvcc -O3 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_90,code=compute_90 -allow-unsupported-compiler -c cuda_utils.cu -o cuda_utils.o
+nvcc -O3 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_90,code=compute_90 -allow-unsupported-compiler -c HPCCG_cuda.cu -o HPCCG_cuda.o
+nvcc main.o generate_matrix.o read_HPC_row.o compute_residual.o mytimer.o dump_matlab_matrix.o make_local_matrix.o exchange_externals.o YAML_Element.o YAML_Doc.o kernels.o cuda_utils.o HPCCG_cuda.o -o test_HPCCG_cuda -lm
+Tue Apr 28 04:55:40 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.148.08             Driver Version: 570.148.08     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA B200                    On  |   00000000:43:00.0 Off |                    0 |
+| N/A   23C    P0            185W / 1000W |       0MiB / 183359MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Running HPCCG on NVIDIA B200 at 256^3 Grid...
+Initial Residual = 7475.3
+Iteration = 15   Residual = 101.378
+Iteration = 30   Residual = 0.689738
+Iteration = 45   Residual = 0.00471707
+Iteration = 60   Residual = 3.21953e-05
+Iteration = 75   Residual = 2.19031e-07
+Iteration = 90   Residual = 1.48129e-09
+Iteration = 105   Residual = 9.88566e-12
+Iteration = 120   Residual = 6.31416e-14
+Iteration = 135   Residual = 2.73828e-16
+Iteration = 149   Residual = 2.242e-18
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 256
+  ny: 256
+  nz: 256
+Number of iterations: 149
+Final residual: 2.242e-18
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.86264
+  DDOT    : 0.04624
+  WAXPBY  : 0.023464
+  SPARSEMV: 0.199587
+FLOPS Summary: 
+  Total   : 1.59988e+11
+  DDOT    : 9.99922e+09
+  WAXPBY  : 1.49988e+10
+  SPARSEMV: 1.34989e+11
+MFLOPS Summary: 
+  Total   : 185463
+  DDOT    : 216246
+  WAXPBY  : 639227
+  SPARSEMV: 676344
+Running HPCCG on NVIDIA B200 at 384^3 Grid...
+Initial Residual = 12019.7
+Iteration = 15   Residual = 155.846
+Iteration = 30   Residual = 1.06393
+Iteration = 45   Residual = 0.00731144
+Iteration = 60   Residual = 5.02243e-05
+Iteration = 75   Residual = 3.44817e-07
+Iteration = 90   Residual = 2.3656e-09
+Iteration = 105   Residual = 1.62123e-11
+Iteration = 120   Residual = 1.10937e-13
+Iteration = 135   Residual = 7.57246e-16
+Iteration = 149   Residual = 7.17938e-18
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 384
+  ny: 384
+  nz: 384
+Number of iterations: 149
+Final residual: 7.17938e-18
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 2.78418
+  DDOT    : 0.065655
+  WAXPBY  : 0.081094
+  SPARSEMV: 0.703795
+FLOPS Summary: 
+  Total   : 5.39958e+11
+  DDOT    : 3.37474e+10
+  WAXPBY  : 5.06211e+10
+  SPARSEMV: 4.55589e+11
+MFLOPS Summary: 
+  Total   : 193938
+  DDOT    : 514011
+  WAXPBY  : 624227
+  SPARSEMV: 647333
