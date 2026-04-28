@@ -5,8 +5,8 @@ import numpy as np
 grids = [64, 128, 192, 256]
 gpu_times = [0.111, 0.862, 3.012, 7.201]
 
-cpu_grids = [192, 256]
-cpu_times = [158.2, 384.2]
+cpu_grids = [64, 128, 192, 256]
+cpu_times = [1.03, 28.6, 158.2, 384.2]
 
 # 1. Scaling Plot
 plt.figure(figsize=(8, 6))
