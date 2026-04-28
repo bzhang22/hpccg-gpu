@@ -1,0 +1,33 @@
+Running L4 FP32 128^3...
+CUDA Error in waxpby_kernel: no kernel image is available for execution on the device
+CUDA Error in spmv_kernel: no kernel image is available for execution on the device
+CUDA Error in waxpby_kernel: no kernel image is available for execution on the device
+CUDA Error in ddot_kernel: no kernel image is available for execution on the device
+Initial Residual = 0
+Mini-Application Name: hpccg
+Mini-Application Version: 1.0
+Parallelism: 
+  MPI not enabled: 
+  OpenMP not enabled: 
+Dimensions: 
+  nx: 128
+  ny: 128
+  nz: 128
+Number of iterations: 0
+Final residual: 0
+#********** Performance Summary (times in sec) ***********: 
+Time Summary: 
+  Total   : 0.028954
+  DDOT    : 0
+  WAXPBY  : 0.00104701
+  SPARSEMV: 0
+FLOPS Summary: 
+  Total   : 0
+  DDOT    : 0
+  WAXPBY  : 0
+  SPARSEMV: 0
+MFLOPS Summary: 
+  Total   : 0
+  DDOT    : -nan
+  WAXPBY  : 0
+  SPARSEMV: -nan
