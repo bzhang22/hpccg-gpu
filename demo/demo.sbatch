@@ -40,14 +40,14 @@ echo ""
 echo "Step 2: Running CPU Baseline (Serial) - 128x128x128..."
 cd $HPCCG_DIR/baseline
 ./test_HPCCG 128 128 128 > cpu_out.txt
-CPU_TIME=$(grep "SPARSEMV:" cpu_out.txt | awk '{print $2}')
+CPU_TIME=$(awk '/SPARSEMV:/ {print $2; exit}' cpu_out.txt)
 echo "CPU SPARSEMV Time: ${CPU_TIME} seconds"
 echo ""
 
 echo "Step 3: Running GPU FP64 (Double Precision) - 128x128x128..."
 cd $HPCCG_DIR/gpu
 ./test_HPCCG_cuda 128 128 128 > gpu_fp64_out.txt
-FP64_TIME=$(grep "SPARSEMV:" gpu_fp64_out.txt | awk '{print $2}')
+FP64_TIME=$(awk '/SPARSEMV:/ {print $2; exit}' gpu_fp64_out.txt)
 echo "GPU FP64 SPARSEMV Time: ${FP64_TIME} seconds"
 SPEEDUP=$(echo "scale=2; $CPU_TIME / $FP64_TIME" | bc)
 echo "=> Speedup vs CPU: ${SPEEDUP}x"
@@ -56,7 +56,7 @@ echo ""
 echo "Step 4: Running GPU FP32 (Single Precision) - 128x128x128..."
 cd $HPCCG_DIR/gpu_fp32
 ./test_HPCCG_cuda 128 128 128 > gpu_fp32_out.txt
-FP32_TIME=$(grep "SPARSEMV:" gpu_fp32_out.txt | awk '{print $2}')
+FP32_TIME=$(awk '/SPARSEMV:/ {print $2; exit}' gpu_fp32_out.txt)
 echo "GPU FP32 SPARSEMV Time: ${FP32_TIME} seconds"
 SPEEDUP_FP32=$(echo "scale=2; $CPU_TIME / $FP32_TIME" | bc)
 echo "=> Speedup vs CPU: ${SPEEDUP_FP32}x"

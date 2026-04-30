@@ -49,7 +49,7 @@ read -p "Press [Enter] to run the CPU Baseline (128^3 Grid)..."
 echo -e "\n${YELLOW}Step 2: Running CPU Baseline (Serial) - 128x128x128${NC}"
 cd $HPCCG_DIR/baseline
 ./test_HPCCG 128 128 128 > cpu_out.txt
-CPU_TIME=$(grep "SPARSEMV:" cpu_out.txt | awk '{print $2}')
+CPU_TIME=$(awk '/SPARSEMV:/ {print $2; exit}' cpu_out.txt)
 echo -e "CPU SPARSEMV Time: ${RED}${CPU_TIME} seconds${NC}"
 
 read -p "Press [Enter] to run the GPU FP64 Version..."
@@ -57,7 +57,7 @@ read -p "Press [Enter] to run the GPU FP64 Version..."
 echo -e "\n${YELLOW}Step 3: Running GPU FP64 (Double Precision) - 128x128x128${NC}"
 cd $HPCCG_DIR/gpu
 ./test_HPCCG_cuda 128 128 128 > gpu_fp64_out.txt
-FP64_TIME=$(grep "SPARSEMV:" gpu_fp64_out.txt | awk '{print $2}')
+FP64_TIME=$(awk '/SPARSEMV:/ {print $2; exit}' gpu_fp64_out.txt)
 echo -e "GPU FP64 SPARSEMV Time: ${GREEN}${FP64_TIME} seconds${NC}"
 SPEEDUP=$(echo "scale=2; $CPU_TIME / $FP64_TIME" | bc)
 echo -e "=> Speedup vs CPU: ${GREEN}${SPEEDUP}x${NC}"
@@ -67,7 +67,7 @@ read -p "Press [Enter] to run the GPU FP32 Version (Mixed Precision Ablation)...
 echo -e "\n${YELLOW}Step 4: Running GPU FP32 (Single Precision) - 128x128x128${NC}"
 cd $HPCCG_DIR/gpu_fp32
 ./test_HPCCG_cuda 128 128 128 > gpu_fp32_out.txt
-FP32_TIME=$(grep "SPARSEMV:" gpu_fp32_out.txt | awk '{print $2}')
+FP32_TIME=$(awk '/SPARSEMV:/ {print $2; exit}' gpu_fp32_out.txt)
 echo -e "GPU FP32 SPARSEMV Time: ${CYAN}${FP32_TIME} seconds${NC}"
 SPEEDUP_FP32=$(echo "scale=2; $CPU_TIME / $FP32_TIME" | bc)
 echo -e "=> Speedup vs CPU: ${CYAN}${SPEEDUP_FP32}x${NC}"
